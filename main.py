@@ -16,6 +16,8 @@ def global_args():
     parser.add_argument('--system_instruction', type=str, default="system_template", help="specify the system prompt")
     parser.add_argument('--api_key', type=str, default=None, help="specify the api key if you want to use api")
 
+    # question
+    parser.add_argument('--task', type=str, default=None, help="specify the task")
     """
     ***tool part***
     """
@@ -41,7 +43,10 @@ if __name__ == "__main__":
     # output = agent("which food contain lots of vitamin?")
     # output = agent("I want to go outside, need I buy an umbrella?")
     # output = agent("我准备明天去一趟西安，结合天气，帮我规划一下旅游攻略吧，我准备在西安玩两天")
-    output = agent("We developed a hardware system and it equips with the Linux system as its software control system, this hardware is aim to enhance the 5G signal transmission power but this device is afraid of water or high temperature. but run '/root/5G/water_prof.py' can unfold the awning, run '/root/5G/heat_prof.py' can unfold the sunshade and run '/root/5G/run.py' can run the device, you need to control the deployment now, come on!")
+    if args.task is None:
+        output = agent("We developed a hardware system and it equips with the Linux system as its software control system, this hardware is aim to enhance the 5G signal transmission power but this device is afraid of water or high temperature. but run '/root/5G/water_prof.py' can unfold the awning, run '/root/5G/heat_prof.py' can unfold the sunshade and run '/root/5G/run.py' can run the device, you need to control the deployment now, come on!")
+    else:
+        output = agent(args.task)
     # output = agent("help me to write a python code to print 'hello world', and run it")
     # output = agent("what is the writer of 'Float'?")
     # output = agent("If tomorrow will have rain, help me to buy an umbrella")
